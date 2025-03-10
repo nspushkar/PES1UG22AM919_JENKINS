@@ -1,17 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-        // Define environment variables
-        SRN = "YOUR_SRN-1"
-    }
-
     stages {
         stage('Build') {
             steps {
                 script {
-                    // Compiling the .cpp file
-                    sh 'g++ -o myProgram source.cpp'
+                    echo "Building the C++ program..."
+                    sh 'g++ -o PES1UG22AM919-1 source.cpp'  // Compile C++ file
                 }
             }
         }
@@ -19,8 +14,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Running the compiled program and print output
-                    sh './myProgram'
+                    echo "Testing the compiled program..."
+                    sh './PES1UG22AM919-1'  // Execute compiled program
                 }
             }
         }
@@ -28,8 +23,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Dummy deployment step
-                    echo "Deploying build ${env.SRN}"
+                    echo "Deploying the application (Placeholder step)..."
                 }
             }
         }
@@ -37,7 +31,6 @@ pipeline {
 
     post {
         failure {
-            // This will run if the pipeline fails
             echo 'Pipeline failed'
         }
     }
