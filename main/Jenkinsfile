@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        // Define environment variables
+        SRN = "YOUR_SRN-1"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Compiling the .cpp file
+                    sh 'g++ -o myProgram source.cpp'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    // Running the compiled program and print output
+                    sh './myProgram'
+                }
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    // Dummy deployment step
+                    echo "Deploying build ${env.SRN}"
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            // This will run if the pipeline fails
+            echo 'Pipeline failed'
+        }
+    }
+}
