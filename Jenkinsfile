@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo "Building the C++ program..."
-                    sh 'g++ -o PES1UG22AM919-1 source.cpp'  // Compile C++ file
+                    sh 'g++ -o PES1UG22AM919-1 nigga.cpp'  // Compile C++ file
                 }
             }
         }
